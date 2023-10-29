@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import AddingForm from "./Components/AddingForm";
+import ShowMedicine from "./Components/ShowMedicine";
+import ContextProvider from "./store/ContextProvider";
 
 function App() {
+  const [medi, setmedi] = useState([]);
+  const mediHandeler = (uName, uDescription, uPrice, uQuantity) => {
+    setmedi((prevDeta) => {
+      return [
+        ...prevDeta,
+        {
+          name: uName,
+          description: uDescription,
+          price: uPrice,
+          quantity: uQuantity,
+        },
+      ];
+    });
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ContextProvider>
+      <div className="App">
+        <AddingForm user={mediHandeler} />
+        <ShowMedicine detail={medi} />
+      </div>
+    </ContextProvider>
   );
 }
 
