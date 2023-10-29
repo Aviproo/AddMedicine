@@ -1,5 +1,6 @@
 import { Fragment, useContext, useState } from "react";
 import Context from "../store/Context";
+import cartIcon from "../cart/cart.png";
 
 const AddingForm = (props) => {
   const ctx = useContext(Context);
@@ -50,6 +51,9 @@ const AddingForm = (props) => {
         <div>
           <br />
           <button type="submit">Add Product</button>
+        </div>
+        <div>
+          <img src={cartIcon} />
         </div>
       </form>
     </Fragment>
